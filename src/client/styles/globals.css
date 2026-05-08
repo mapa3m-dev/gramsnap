@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #16161d;
+  --bg-input: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --text: #f1f1f4;
+  --text-muted: #8a8a93;
+  --accent: #7b8cff;
+  --accent-dim: #5d6fea;
+  --success: #4ade80;
+  --error: #f87171;
+  --warning: #fbbf24;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(40rem 30rem at 12% 18%, rgba(123, 140, 255, 0.32), transparent 60%),
+    radial-gradient(35rem 28rem at 88% 12%, rgba(244, 114, 182, 0.22), transparent 60%),
+    radial-gradient(45rem 35rem at 78% 92%, rgba(74, 222, 128, 0.18), transparent 65%),
+    radial-gradient(30rem 24rem at 8% 88%, rgba(251, 191, 36, 0.14), transparent 65%);
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at top, transparent 40%, var(--bg) 100%);
+  pointer-events: none;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='password'],
+input[type='date'],
+input[type='search'] {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 9px 12px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+input[type='text']:focus,
+input[type='tel']:focus,
+input[type='password']:focus,
+input[type='date']:focus,
+input[type='search']:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+button {
+  cursor: pointer;
+}
+
+select {
+  background: var(--bg-input);
+  color: var(--text);
+}
+
+.glass {
+  isolation: isolate;
+  background-color: rgba(22, 22, 29, 0.78);
+  border: 1px solid var(--border);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20),
+    0 12px 30px -16px rgba(0, 0, 0, 0.55);
+}
+
+.glass-strong {
+  isolation: isolate;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.30),
+    0 24px 60px -20px rgba(0, 0, 0, 0.60);
+}
+
+@supports (backdrop-filter: url(#liquid-glass)) {
+  .glass-refract {
+    backdrop-filter: blur(16px) url(#liquid-glass) saturate(170%);
+  }
+}
+
+.glass-button {
+  isolation: isolate;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  transition: background 0.15s, transform 0.15s, border-color 0.15s;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20);
+}
+
+.glass-button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.glass-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.glass-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.glass-cta {
+  isolation: isolate;
+  background: linear-gradient(135deg, rgba(123, 140, 255, 0.95), rgba(93, 111, 234, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  transition: filter 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20),
+    0 8px 24px -8px rgba(123, 140, 255, 0.55);
+}
+
+.glass-cta:hover:not(:disabled) {
+  filter: brightness(1.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.40),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.20),
+    0 10px 30px -8px rgba(123, 140, 255, 0.70);
+}
+
+.glass-cta:active:not(:disabled) {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.glass-cta:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: saturate(0.5);
+}
+
+.glass-row {
+  background: transparent;
+  transition: background 0.12s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.glass-row.is-selected {
+  background: rgba(123, 140, 255, 0.12);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.20);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
